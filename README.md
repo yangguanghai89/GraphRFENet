@@ -10,4 +10,4 @@
 
 如果想自己构图，使用tool\build_graph.py文件构图
 
-预训练语言模型链接（bert和bge）：https://pan.quark.cn/s/541f4613fcbd
+预训练语言模型链接（bert和bge）：https://pan.quark.cn/s/3da9adfbb82d
