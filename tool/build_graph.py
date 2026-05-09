@@ -262,13 +262,13 @@ def build_pp_edges_group_topk_union(
     faiss.normalize_L2(X)
     N, D = X.shape
 
-    # 2) 建 code -> patents（从 patent2codes 反推，避免你缓存里没有 code2patents）
+    # 2) 建 code -> patents
     code2patents = defaultdict(list)
     for p, codes in patent2codes.items():
         for c in codes:
             code2patents[c].append(p)
 
-    # 3) 收集所有候选边（可能重复，后面 union+截断）
+    # 3) 收集所有候选边（
     src_all = []
     dst_all = []
     sim_all = []
@@ -307,8 +307,7 @@ def build_pp_edges_group_topk_union(
 
         index.add(V)
 
-        # 分批检索（避免一次性占太多内存）
-        # 搜索 k+1 是为了去掉自己
+        # 分批检索
         for st in range(0, df, batch):
             ed = min(df, st + batch)
             q = V[st:ed]
@@ -439,7 +438,7 @@ def build_all(
     px = torch.tensor(mappings["patent_ipc_edges"], dtype=torch.long).t().contiguous()
 
     # 4) p-p edges: 全局ANN + 共享小类过滤
-    # 默认用纯专利文本向量做 ANN（更符合“相似度只用专利文本”）
+    # 默认用纯专利文本向量做 ANN
     vec_for_sim = patent_text_x.detach().cpu().float()
 
     pp = build_pp_edges_group_topk_union(
