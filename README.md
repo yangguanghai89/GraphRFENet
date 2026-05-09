@@ -9,3 +9,5 @@
 图数据链接（夸克网盘）：https://pan.quark.cn/s/374708dbf9d2 数据下载后与train.py文件在同一级目录
 
 如果想自己构图，使用tool\build_graph.py文件构图
+
+预训练语言模型链接（bert和bge）：https://pan.quark.cn/s/541f4613fcbd
